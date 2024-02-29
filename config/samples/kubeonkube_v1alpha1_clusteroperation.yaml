@@ -1,0 +1,12 @@
+apiVersion: kubeonkube.clay.io/v1alpha1
+kind: ClusterOperation
+metadata:
+  labels:
+    app.kubernetes.io/name: clusteroperation
+    app.kubernetes.io/instance: clusteroperation-sample
+    app.kubernetes.io/part-of: kube-on-kube
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: kube-on-kube
+  name: clusteroperation-sample
+spec:
+  # TODO(user): Add fields here
