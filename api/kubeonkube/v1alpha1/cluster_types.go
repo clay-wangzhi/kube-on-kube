@@ -17,26 +17,13 @@ limitations under the License.
 package v1alpha1
 
 import (
+	"kube-on-kube/api"
+
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
 // EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
-
-// ClusterSpec defines the desired state of Cluster
-type ClusterSpec struct {
-	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
-	// Important: Run "make" to regenerate code after modifying this file
-
-	// Foo is an example field of Cluster. Edit cluster_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
-}
-
-// ClusterStatus defines the observed state of Cluster
-type ClusterStatus struct {
-	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
-	// Important: Run "make" to regenerate code after modifying this file
-}
 
 //+kubebuilder:object:root=true
 //+kubebuilder:subresource:status
@@ -48,6 +35,59 @@ type Cluster struct {
 
 	Spec   ClusterSpec   `json:"spec,omitempty"`
 	Status ClusterStatus `json:"status,omitempty"`
+}
+
+// ClusterSpec defines the desired state of Cluster
+type ClusterSpec struct {
+	// HostsConfRef stores hosts.yml.
+	// +required
+	HostsConfRef *api.ConfigMapRef `json:"hostsConfRef"`
+	// VarsConfRef stores group_vars.yml.
+	// +required
+	VarsConfRef *api.ConfigMapRef `json:"varsConfRef"`
+	// KubeConfRef stores cluster kubeconfig.
+	// +optional
+	KubeConfRef *api.ConfigMapRef `json:"kubeConfRef"`
+	// SSHAuthRef stores ssh key and if it is empty ,then use sshpass.
+	// +optional
+	SSHAuthRef *api.SecretRef `json:"sshAuthRef"`
+	// +optional
+	PreCheckRef *api.ConfigMapRef `json:"preCheckRef"`
+}
+
+func (spec *ClusterSpec) ConfigDataList() []*api.ConfigMapRef {
+	return []*api.ConfigMapRef{spec.HostsConfRef, spec.VarsConfRef, spec.KubeConfRef, spec.PreCheckRef}
+}
+
+func (spec *ClusterSpec) SecretDataList() []*api.SecretRef {
+	return []*api.SecretRef{spec.SSHAuthRef}
+}
+
+type ClusterConditionType string
+
+const (
+	ClusterConditionCreating ClusterConditionType = "Running"
+
+	ClusterConditionRunning ClusterConditionType = "Succeeded"
+
+	ClusterConditionUpdating ClusterConditionType = "Failed"
+)
+
+type ClusterCondition struct {
+	// ClusterOps refers to the name of ClusterOperation.
+	// +required
+	ClusterOps string `json:"clusterOps"`
+	// +optional
+	Status ClusterConditionType `json:"status"`
+	// +optional
+	StartTime *metav1.Time `json:"startTime,omitempty"`
+	// +optional
+	EndTime *metav1.Time `json:"endTime,omitempty"`
+}
+
+// ClusterStatus defines the observed state of Cluster
+type ClusterStatus struct {
+	Conditions []ClusterCondition `json:"conditions"`
 }
 
 //+kubebuilder:object:root=true

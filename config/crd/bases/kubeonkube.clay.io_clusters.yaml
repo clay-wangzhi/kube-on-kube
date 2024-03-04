@@ -35,13 +35,88 @@ spec:
           spec:
             description: ClusterSpec defines the desired state of Cluster
             properties:
-              foo:
-                description: Foo is an example field of Cluster. Edit cluster_types.go
-                  to remove/update
-                type: string
+              hostsConfRef:
+                description: HostsConfRef stores hosts.yml.
+                properties:
+                  name:
+                    type: string
+                  namespace:
+                    type: string
+                required:
+                - name
+                - namespace
+                type: object
+              kubeConfRef:
+                description: KubeConfRef stores cluster kubeconfig.
+                properties:
+                  name:
+                    type: string
+                  namespace:
+                    type: string
+                required:
+                - name
+                - namespace
+                type: object
+              preCheckRef:
+                properties:
+                  name:
+                    type: string
+                  namespace:
+                    type: string
+                required:
+                - name
+                - namespace
+                type: object
+              sshAuthRef:
+                description: SSHAuthRef stores ssh key and if it is empty ,then use
+                  sshpass.
+                properties:
+                  name:
+                    type: string
+                  namespace:
+                    type: string
+                required:
+                - name
+                - namespace
+                type: object
+              varsConfRef:
+                description: VarsConfRef stores group_vars.yml.
+                properties:
+                  name:
+                    type: string
+                  namespace:
+                    type: string
+                required:
+                - name
+                - namespace
+                type: object
+            required:
+            - hostsConfRef
+            - varsConfRef
             type: object
           status:
             description: ClusterStatus defines the observed state of Cluster
+            properties:
+              conditions:
+                items:
+                  properties:
+                    clusterOps:
+                      description: ClusterOps refers to the name of ClusterOperation.
+                      type: string
+                    endTime:
+                      format: date-time
+                      type: string
+                    startTime:
+                      format: date-time
+                      type: string
+                    status:
+                      type: string
+                  required:
+                  - clusterOps
+                  type: object
+                type: array
+            required:
+            - conditions
             type: object
         type: object
     served: true
