@@ -13,9 +13,13 @@ spec:
     listKind: ClusterOperationList
     plural: clusteroperations
     singular: clusteroperation
-  scope: Namespaced
+  scope: Cluster
   versions:
-  - name: v1alpha1
+  - additionalPrinterColumns:
+    - jsonPath: .metadata.creationTimestamp
+      name: Age
+      type: date
+    name: v1alpha1
     schema:
       openAPIV3Schema:
         description: ClusterOperation is the Schema for the clusteroperations API
