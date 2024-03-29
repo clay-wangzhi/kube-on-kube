@@ -69,6 +69,7 @@ func (spec *ClusterSpec) SecretDataList() []*api.SecretRef {
 
 type ClusterConditionType string
 
+// Todo 没有找到使用的地方
 const (
 	ClusterConditionCreating ClusterConditionType = "Running"
 

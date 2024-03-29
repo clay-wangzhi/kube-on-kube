@@ -22,7 +22,10 @@ import (
 
 	// Import all Kubernetes client auth plugins (e.g. Azure, GCP, OIDC, etc.)
 	// to ensure that exec-entrypoint and run can make use of them.
+	"k8s.io/client-go/kubernetes"
 	_ "k8s.io/client-go/plugin/pkg/client/auth"
+	"k8s.io/client-go/rest"
+	"k8s.io/client-go/tools/clientcmd"
 
 	"k8s.io/apimachinery/pkg/runtime"
 	utilruntime "k8s.io/apimachinery/pkg/util/runtime"
@@ -32,6 +35,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
 	kubeonkubev1alpha1 "kube-on-kube/api/kubeonkube/v1alpha1"
+	kokClientSet "kube-on-kube/generated/clientset/versioned"
 	kubeonkubecontroller "kube-on-kube/internal/controller/kubeonkube"
 	//+kubebuilder:scaffold:imports
 )
@@ -89,9 +93,29 @@ func main() {
 		os.Exit(1)
 	}
 
+	// 获取认证文件
+	kuebeConfig, err := rest.InClusterConfig()
+	if err != nil {
+		kuebeConfig, err = clientcmd.BuildConfigFromFlags("", os.Getenv("HOME")+"/.kube/config")
+		if err != nil {
+			setupLog.Error(err, "unable to set up kube config")
+		}
+	}
+	clientSet, err := kubernetes.NewForConfig(kuebeConfig)
+	if err != nil {
+		setupLog.Error(err, "unable to set up clientset")
+	}
+	kokClientSet, err := kokClientSet.NewForConfig(kuebeConfig)
+	if err != nil {
+		setupLog.Error(err, "unable to set up kokClientSet")
+	}
+
+	// 添加 clientset 和 kokclientset
 	if err = (&kubeonkubecontroller.ClusterReconciler{
-		Client: mgr.GetClient(),
-		Scheme: mgr.GetScheme(),
+		Client:       mgr.GetClient(),
+		Scheme:       mgr.GetScheme(),
+		ClientSet:    clientSet,
+		KokClientSet: kokClientSet,
 	}).SetupWithManager(mgr); err != nil {
 		setupLog.Error(err, "unable to create controller", "controller", "Cluster")
 		os.Exit(1)
