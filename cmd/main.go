@@ -121,8 +121,10 @@ func main() {
 		os.Exit(1)
 	}
 	if err = (&kubeonkubecontroller.ClusterOperationReconciler{
-		Client: mgr.GetClient(),
-		Scheme: mgr.GetScheme(),
+		Client:       mgr.GetClient(),
+		Scheme:       mgr.GetScheme(),
+		ClientSet:    clientSet,
+		KokClientSet: kokClientSet,
 	}).SetupWithManager(mgr); err != nil {
 		setupLog.Error(err, "unable to create controller", "controller", "ClusterOperation")
 		os.Exit(1)

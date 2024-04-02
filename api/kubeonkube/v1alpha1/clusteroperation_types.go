@@ -65,7 +65,7 @@ type ClusterOperationSpec struct {
 	Cluster string `json:"cluster"`
 	// HostsConfRef will be filled by operator when it performs backup.
 	// +optional
-	HostsConfRef *api.ConfigMapRef `json:"hostsConfRef"`
+	HostsConfRef *api.ConfigMapRef `json:"hostsConfRef,omitempty"`
 	// VarsConfRef will be filled by operator when it performs backup.
 	// +optional
 	VarsConfRef *api.ConfigMapRef `json:"varsConfRef,omitempty"`
@@ -89,9 +89,9 @@ type ClusterOperationSpec struct {
 	// +required
 	Image string `json:"image"`
 	// +optional
-	PreHook []HookAction `json:"preHook"`
+	PreHook []HookAction `json:"preHook,omitempty"`
 	// +optional
-	PostHook []HookAction `json:"postHook"`
+	PostHook []HookAction `json:"postHook,omitempty"`
 	// +optional
 	Resources corev1.ResourceRequirements `json:"resources"`
 	// +optional

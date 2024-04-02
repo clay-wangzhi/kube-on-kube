@@ -533,12 +533,12 @@ func (r *ClusterOperationReconciler) CreateKubeSprayJob(clusterOps *kubeonkubev1
 	if err != nil {
 		if apierrors.IsNotFound(err) {
 			// the job doest not exist , and will create the job.
-			sa, err := r.GetServiceAccountName(util.GetCurrentNSOrDefault(), ServiceAccount)
-			if err != nil {
-				return false, err
-			}
+			// sa, err := r.GetServiceAccountName(util.GetCurrentNSOrDefault(), ServiceAccount)
+			// if err != nil {
+			// 	return false, err
+			// }
 			klog.Warningf("create job %s for kubeonkubeClusterOp %s", jobName, clusterOps.Name)
-			job = r.NewKubesprayJob(clusterOps, sa)
+			job = r.NewKubesprayJob(clusterOps)
 			r.SetOwnerReferences(&job.ObjectMeta, clusterOps)
 			job, err = r.ClientSet.BatchV1().Jobs(job.Namespace).Create(context.Background(), job, metav1.CreateOptions{})
 			if err != nil {
@@ -579,7 +579,7 @@ func (r *ClusterOperationReconciler) GetServiceAccountName(namespace, labelSelec
 	return serviceAccounts.Items[0].Name, nil
 }
 
-func (r *ClusterOperationReconciler) NewKubesprayJob(clusterOps *kubeonkubev1alpha1.ClusterOperation, serviceAccountName string) *batchv1.Job {
+func (r *ClusterOperationReconciler) NewKubesprayJob(clusterOps *kubeonkubev1alpha1.ClusterOperation) *batchv1.Job {
 	BackoffLimit := int32(0)
 	DefaultMode := int32(0o700)
 	PrivatekeyMode := int32(0o400)
@@ -598,8 +598,8 @@ func (r *ClusterOperationReconciler) NewKubesprayJob(clusterOps *kubeonkubev1alp
 			BackoffLimit: &BackoffLimit,
 			Template: corev1.PodTemplateSpec{
 				Spec: corev1.PodSpec{
-					RestartPolicy:      corev1.RestartPolicyNever,
-					ServiceAccountName: serviceAccountName,
+					RestartPolicy: corev1.RestartPolicyNever,
+					// ServiceAccountName: serviceAccountName,
 					Containers: []corev1.Container{
 						{
 							Name:    SprayJobPodName,
