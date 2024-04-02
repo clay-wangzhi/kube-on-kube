@@ -1,7 +1,8 @@
 # Build the manager binary
-FROM golang:1.19 as builder
+FROM golang:1.20 as builder
 ARG TARGETOS
 ARG TARGETARCH
+ENV GOPROXY="https://goproxy.cn"
 
 WORKDIR /workspace
 # Copy the Go Modules manifests
@@ -14,7 +15,10 @@ RUN go mod download
 # Copy the go source
 COPY cmd/main.go cmd/main.go
 COPY api/ api/
-COPY internal/controller/ internal/controller/
+COPY pkg/ pkg/
+COPY generated/ generated/
+COPY internal/ internal/
+COPY vendor/ vendor/
 
 # Build
 # the GOARCH has not a default value to allow the binary be built according to the host where the command
