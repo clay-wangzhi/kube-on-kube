@@ -18,13 +18,13 @@ limitations under the License.
 package externalversions
 
 import (
-	versioned "kube-on-kube/generated/clientset/versioned"
-	internalinterfaces "kube-on-kube/generated/informers/externalversions/internalinterfaces"
-	kubeonkube "kube-on-kube/generated/informers/externalversions/kubeonkube"
 	reflect "reflect"
 	sync "sync"
 	time "time"
 
+	versioned "github.com/clay-wangzhi/kube-on-kube/generated/clientset/versioned"
+	internalinterfaces "github.com/clay-wangzhi/kube-on-kube/generated/informers/externalversions/internalinterfaces"
+	kubeonkube "github.com/clay-wangzhi/kube-on-kube/generated/informers/externalversions/kubeonkube"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"

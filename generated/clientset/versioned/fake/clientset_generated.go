@@ -18,10 +18,9 @@ limitations under the License.
 package fake
 
 import (
-	clientset "kube-on-kube/generated/clientset/versioned"
-	kubeonkubev1alpha1 "kube-on-kube/generated/clientset/versioned/typed/kubeonkube/v1alpha1"
-	fakekubeonkubev1alpha1 "kube-on-kube/generated/clientset/versioned/typed/kubeonkube/v1alpha1/fake"
-
+	clientset "github.com/clay-wangzhi/kube-on-kube/generated/clientset/versioned"
+	kubeonkubev1alpha1 "github.com/clay-wangzhi/kube-on-kube/generated/clientset/versioned/typed/kubeonkube/v1alpha1"
+	fakekubeonkubev1alpha1 "github.com/clay-wangzhi/kube-on-kube/generated/clientset/versioned/typed/kubeonkube/v1alpha1/fake"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/watch"
 	"k8s.io/client-go/discovery"

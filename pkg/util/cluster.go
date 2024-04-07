@@ -6,7 +6,7 @@ import (
 	"os"
 	"strings"
 
-	"kube-on-kube/api"
+	"github.com/clay-wangzhi/kube-on-kube/api"
 
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"

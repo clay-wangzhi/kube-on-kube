@@ -32,11 +32,11 @@ import (
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	"kube-on-kube/api"
-	kubeonkubev1alpha1 "kube-on-kube/api/kubeonkube/v1alpha1"
-	kokClientSet "kube-on-kube/generated/clientset/versioned"
-	"kube-on-kube/pkg/util"
-	"kube-on-kube/pkg/util/entrypoint"
+	"github.com/clay-wangzhi/kube-on-kube/api"
+	kubeonkubev1alpha1 "github.com/clay-wangzhi/kube-on-kube/api/kubeonkube/v1alpha1"
+	kokClientSet "github.com/clay-wangzhi/kube-on-kube/generated/clientset/versioned"
+	"github.com/clay-wangzhi/kube-on-kube/pkg/util"
+	"github.com/clay-wangzhi/kube-on-kube/pkg/util/entrypoint"
 
 	batchv1 "k8s.io/api/batch/v1"
 	corev1 "k8s.io/api/core/v1"

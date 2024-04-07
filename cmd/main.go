@@ -34,9 +34,9 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/healthz"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
-	kubeonkubev1alpha1 "kube-on-kube/api/kubeonkube/v1alpha1"
-	kokClientSet "kube-on-kube/generated/clientset/versioned"
-	kubeonkubecontroller "kube-on-kube/internal/controller/kubeonkube"
+	kubeonkubev1alpha1 "github.com/clay-wangzhi/kube-on-kube/api/kubeonkube/v1alpha1"
+	kokClientSet "github.com/clay-wangzhi/kube-on-kube/generated/clientset/versioned"
+	kubeonkubecontroller "github.com/clay-wangzhi/kube-on-kube/internal/controller/kubeonkube"
 	//+kubebuilder:scaffold:imports
 )
 

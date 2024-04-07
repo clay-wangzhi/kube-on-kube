@@ -5,7 +5,7 @@ set -o nounset
 set -o pipefail
 
 # corresponding to go mod init <module>
-MODULE=kube-on-kube
+MODULE=github.com/clay-wangzhi/kube-on-kube
 # api package
 APIS_PKG=api
 # generated output package
@@ -24,4 +24,4 @@ bash "${CODEGEN_PKG}"/generate-groups.sh "deepcopy,client,informer,lister" \
   ${MODULE}/${OUTPUT_PKG} ${MODULE}/${APIS_PKG} \
   ${GROUP_VERSION} \
   --go-header-file "${SCRIPT_ROOT}"/hack/boilerplate.go.txt \
-  --output-base "${SCRIPT_ROOT}/.."
+  --output-base "${SCRIPT_ROOT}/../../../"

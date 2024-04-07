@@ -30,7 +30,7 @@ import (
 	logf "sigs.k8s.io/controller-runtime/pkg/log"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
-	kubeonkubev1alpha1 "kube-on-kube/api/kubeonkube/v1alpha1"
+	kubeonkubev1alpha1 "github.com/clay-wangzhi/kube-on-kube/api/kubeonkube/v1alpha1"
 	//+kubebuilder:scaffold:imports
 )
 

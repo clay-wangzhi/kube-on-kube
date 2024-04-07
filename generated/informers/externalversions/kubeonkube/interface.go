@@ -18,8 +18,8 @@ limitations under the License.
 package kubeonkube
 
 import (
-	internalinterfaces "kube-on-kube/generated/informers/externalversions/internalinterfaces"
-	v1alpha1 "kube-on-kube/generated/informers/externalversions/kubeonkube/v1alpha1"
+	internalinterfaces "github.com/clay-wangzhi/kube-on-kube/generated/informers/externalversions/internalinterfaces"
+	v1alpha1 "github.com/clay-wangzhi/kube-on-kube/generated/informers/externalversions/kubeonkube/v1alpha1"
 )
 
 // Interface provides access to each of this group's versions.

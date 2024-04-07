@@ -17,7 +17,7 @@ limitations under the License.
 package v1alpha1
 
 import (
-	"kube-on-kube/api"
+	"github.com/clay-wangzhi/kube-on-kube/api"
 
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )

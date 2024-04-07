@@ -19,10 +19,10 @@ package v1alpha1
 
 import (
 	"context"
-	v1alpha1 "kube-on-kube/api/kubeonkube/v1alpha1"
-	scheme "kube-on-kube/generated/clientset/versioned/scheme"
 	"time"
 
+	v1alpha1 "github.com/clay-wangzhi/kube-on-kube/api/kubeonkube/v1alpha1"
+	scheme "github.com/clay-wangzhi/kube-on-kube/generated/clientset/versioned/scheme"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	types "k8s.io/apimachinery/pkg/types"
 	watch "k8s.io/apimachinery/pkg/watch"

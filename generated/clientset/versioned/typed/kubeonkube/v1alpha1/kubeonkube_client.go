@@ -18,10 +18,10 @@ limitations under the License.
 package v1alpha1
 
 import (
-	v1alpha1 "kube-on-kube/api/kubeonkube/v1alpha1"
-	"kube-on-kube/generated/clientset/versioned/scheme"
 	"net/http"
 
+	v1alpha1 "github.com/clay-wangzhi/kube-on-kube/api/kubeonkube/v1alpha1"
+	"github.com/clay-wangzhi/kube-on-kube/generated/clientset/versioned/scheme"
 	rest "k8s.io/client-go/rest"
 )
 

@@ -1,4 +1,4 @@
-module kube-on-kube
+module github.com/clay-wangzhi/kube-on-kube
 
 go 1.20
 

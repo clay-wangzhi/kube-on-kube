@@ -19,12 +19,12 @@ package v1alpha1
 
 import (
 	"context"
-	kubeonkubev1alpha1 "kube-on-kube/api/kubeonkube/v1alpha1"
-	versioned "kube-on-kube/generated/clientset/versioned"
-	internalinterfaces "kube-on-kube/generated/informers/externalversions/internalinterfaces"
-	v1alpha1 "kube-on-kube/generated/listers/kubeonkube/v1alpha1"
 	time "time"
 
+	kubeonkubev1alpha1 "github.com/clay-wangzhi/kube-on-kube/api/kubeonkube/v1alpha1"
+	versioned "github.com/clay-wangzhi/kube-on-kube/generated/clientset/versioned"
+	internalinterfaces "github.com/clay-wangzhi/kube-on-kube/generated/informers/externalversions/internalinterfaces"
+	v1alpha1 "github.com/clay-wangzhi/kube-on-kube/generated/listers/kubeonkube/v1alpha1"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	watch "k8s.io/apimachinery/pkg/watch"

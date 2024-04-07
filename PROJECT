@@ -7,7 +7,7 @@ layout:
 - go.kubebuilder.io/v4
 multigroup: true
 projectName: kube-on-kube
-repo: kube-on-kube
+repo: github.com/clay-wangzhi/kube-on-kube
 resources:
 - api:
     crdVersion: v1
